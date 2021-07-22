@@ -59,7 +59,39 @@ exports.save = (req, res) => {
       connection.release()
 
       if (!err) {
-        res.render('add_user')
+        res.render('add_user', { alert: 'User added successfully.' })
+      } else {
+        console.log(err)
+      }
+    })
+  })
+}
+
+exports.edit = (req, res) => {
+  pool.getConnection((err, connection) => {
+    if (err) throw err
+    connection.query('SELECT * FROM user WHERE id = ?', [req.params.id], (err, rows) => {
+      connection.release()
+      if (!err) {
+        res.render('edit_user', { rows })
+        console.log(rows)
+      } else {
+        console.log(err)
+      }
+    })
+  })
+}
+exports.update = (req, res) => {
+  const { first_name, last_name, email, phone, comments } = req.body
+  pool.getConnection((err, connection) => {
+    if (err) throw err
+    console.log('Connected AS ID ' + connection.threadId)
+
+    connection.query('UPDATE user SET first_name = ?, last_name = ?, email = ?, phone = ?, comments = ? WHERE id = ?', [first_name, last_name, email, phone, comments, req.params.id], (err, rows) => {
+      connection.release()
+
+      if (!err) {
+        res.render('edit_user', { alert: 'User saved successfully.' })
       } else {
         console.log(err)
       }

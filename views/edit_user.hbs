@@ -12,6 +12,8 @@
 </div>
 {{/if}}
 
-<form action="/add_user" class="row g-3 needs-validation" method="post" novalidate>
+{{#each rows}}
+<form action="/edit_user/{{this.id}}" class="row g-3 needs-validation" method="post" novalidate>
   {{>user_form}}
 </form>
+{{/each}}
