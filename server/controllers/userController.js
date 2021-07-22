@@ -48,3 +48,21 @@ exports.find = (req, res) => {
 exports.form = (req, res) => {
   res.render('add_user')
 }
+
+exports.save = (req, res) => {
+  const { first_name, last_name, email, phone, comments } = req.body
+  pool.getConnection((err, connection) => {
+    if (err) throw err
+    console.log('Connected AS ID ' + connection.threadId)
+
+    connection.query('INSERT INTO user SET first_name = ?, last_name = ?, email = ?, phone = ?, comments = ?', [first_name, last_name, email, phone, comments], (err, rows) => {
+      connection.release()
+
+      if (!err) {
+        res.render('add_user')
+      } else {
+        console.log(err)
+      }
+    })
+  })
+}
