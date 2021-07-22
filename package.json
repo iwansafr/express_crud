@@ -1,0 +1,29 @@
+{
+  "name": "express_crud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iwansafr/express_crud.git"
+  },
+  "author": "esoftgreat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iwansafr/express_crud/issues"
+  },
+  "homepage": "https://github.com/iwansafr/express_crud#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
